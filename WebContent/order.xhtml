@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:l="http://xmlns.jcp.org/jsf/core"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui = "http://java.sun.com/jsf/facelets"
+	  xmlns:h = "http://java.sun.com/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Check Out Page</title>
+		<l:metadata>
+          <l:event type="preRenderView" listener="#{pizzaBean.createOrder()}"/>
+      </l:metadata>
+</head>
+<body>
+	 <h:form>
+		<h:outputLabel value="Confirm item and price"></h:outputLabel>
+		<h:dataTable value="#{pizzaBean.itemAndPriceMap.entrySet().toArray()}" var="entry">
+		    <h:column>#{entry.key} - </h:column>
+		    <h:column>#{entry.value} SEK</h:column>
+		</h:dataTable>
+		<h:outputLabel value="Total Price : ">#{pizzaBean.total} SEK</h:outputLabel><br></br>
+		<h:commandButton action="confirm" value="Confirm order"></h:commandButton>
+	 </h:form>
+</body>
+</html>
